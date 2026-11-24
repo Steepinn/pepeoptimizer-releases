@@ -1,6 +1,6 @@
 {
   "version": "2.2.2",
-  "source_commit": "96eec96cf30a860644c8b783d1fa907b8b61f8ec",
-  "archive_path": "desktop-source/v2.2.2",
-  "source_sha256": "b831bcf3abd906884d8eadde589521fb25791c1d42e3886e7e02c7d9d8cd4b02"
+  "source_commit": "6f5796ea3cc405060e36a65df6f687d047ee1f93",
+  "archive_path": "desktop-source/v2.2.2-fix1",
+  "source_sha256": "97be93e4e3960a1eefda8253ee9bc560ecf55581fe47ccb9a5bb6508814b7af0"
 }
