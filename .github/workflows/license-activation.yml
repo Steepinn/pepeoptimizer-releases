@@ -1,0 +1,36 @@
+name: Pepe+ activation
+
+on:
+  issues:
+    types: [opened]
+  workflow_dispatch:
+  schedule:
+    - cron: '23 * * * *'
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: pepe-license-store
+  cancel-in-progress: false
+
+jobs:
+  activation:
+    if: github.event_name != 'issues' || startsWith(github.event.issue.title, 'Pepe+ activation ')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install -r requirements.txt
+      - name: Process encrypted activation or synchronize signed statuses
+        run: python activation_service.py
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          LICENSE_STORE_TOKEN: ${{ secrets.LICENSE_STORE_TOKEN }}
+          LICENSE_REPOSITORY: ${{ secrets.LICENSE_REPOSITORY }}
+          LICENSE_DECRYPT_KEY: ${{ secrets.LICENSE_DECRYPT_KEY }}
+          LICENSE_SIGNING_KEY: ${{ secrets.LICENSE_SIGNING_KEY }}
